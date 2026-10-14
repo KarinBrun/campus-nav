@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import NextUp from '../components/NextUp';
+import { API_URL } from '../config';
 import plazaImage from '../assets/Plaza.jpg';
 import {
   CalendarDays,
@@ -34,9 +35,7 @@ function Home() {
       try {
         const token = localStorage.getItem('token');
 
-        const response = await fetch(
-          'http://localhost:5000/api/schedules',
-          {
+        const response = await fetch(`${API_URL}/api/schedules`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -108,7 +107,7 @@ function Home() {
         const token = localStorage.getItem('token');
 
         const response = await fetch(
-          'http://localhost:5000/api/schedule-items',
+          `${API_URL}/api/schedule-items`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -146,7 +145,7 @@ function Home() {
         const token = localStorage.getItem('token');
 
         const response = await fetch(
-          'http://localhost:5000/api/pins',
+          `${API_URL}/api/pins`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

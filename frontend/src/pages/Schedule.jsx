@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ClockPicker from './ClockPicker';
+import { API_URL } from '../config';
 import { CalendarDays, BookOpen, CalendarCheck, Clock3, MapPin, Search, Navigation, Trash2, Pencil } from 'lucide-react';
 import './Schedule.scss';
 
@@ -71,7 +72,7 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
         const token = localStorage.getItem('token');
 
         const response = await fetch(
-          'http://localhost:5000/api/schedules',
+          `${API_URL}/api/schedules`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -113,7 +114,7 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
         const token = localStorage.getItem('token');
 
         const response = await fetch(
-          'http://localhost:5000/api/schedule-items',
+          `${API_URL}/api/schedule-items`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -144,7 +145,7 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
         const token = localStorage.getItem('token');
 
         const response = await fetch(
-          'http://localhost:5000/api/rooms',
+          `${API_URL}/api/rooms`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -197,7 +198,7 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        'http://localhost:5000/api/schedule-items',
+        `${API_URL}/api/schedule-items`,
         {
           method: 'POST',
           headers: {
@@ -266,7 +267,7 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        `http://localhost:5000/api/schedule-items/${editingScheduleItem._id}`,
+        `${API_URL}/api/schedule-items/${editingScheduleItem._id}`,
         {
           method: 'PUT',
           headers: {
@@ -318,7 +319,7 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        'http://localhost:5000/api/classes',
+        `${API_URL}/api/classes`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -351,7 +352,7 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        `http://localhost:5000/api/schedules/classes/${classId}`,
+        `${API_URL}/api/schedules/classes/${classId}`,
         {
           method: 'POST',
           headers: {
@@ -394,7 +395,7 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        `http://localhost:5000/api/schedules/classes/${classItem._id}`,
+        `${API_URL}/api/schedules/classes/${classItem._id}`,
         {
           method: 'DELETE',
           headers: {
@@ -466,7 +467,7 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        `http://localhost:5000/api/schedule-items/${item._id}`,
+        `${API_URL}/api/schedule-items/${item._id}`,
         {
           method: 'DELETE',
           headers: {

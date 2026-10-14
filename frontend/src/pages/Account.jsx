@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
+import { API_URL } from '../config';
 import { UserRound, Palette, ShieldCheck } from 'lucide-react';
 import './Account.scss';
 
@@ -25,7 +26,7 @@ function Account() {
         const token = localStorage.getItem('token');
 
         const response = await fetch(
-          'http://localhost:5000/api/users/me',
+          `${API_URL}/api/users/me`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -64,7 +65,7 @@ function Account() {
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        'http://localhost:5000/api/users/me',
+        `${API_URL}/api/users/me`,
         {
           method: 'PUT',
           headers: {
@@ -133,7 +134,7 @@ function Account() {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(
-        'http://localhost:5000/api/users/me/password',
+        `${API_URL}/api/users/me/password`,
         {
           method: 'PUT',
           headers: {

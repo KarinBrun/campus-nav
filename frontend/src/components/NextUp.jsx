@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
 import {
   ArrowRight,
   BookOpen,
@@ -23,8 +24,8 @@ function NextUp() {
         const headers = { Authorization: `Bearer ${token}` };
 
         const [classesResponse, itemsResponse] = await Promise.all([
-          fetch('http://localhost:5000/api/schedules', { headers }),
-          fetch('http://localhost:5000/api/schedule-items', { headers }),
+          fetch(`${API_URL}/api/schedules`, { headers }),
+          fetch(`${API_URL}/api/schedule-items`, { headers }),
         ]);
 
         if (!classesResponse.ok || !itemsResponse.ok) {

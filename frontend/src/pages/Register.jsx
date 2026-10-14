@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
 import campusImage from '../assets/GV Campus.jpg';
 import grandViewLogo from '../assets/grand-view-logo-white.jpg';
 import './Login.scss';
@@ -32,9 +33,7 @@ function Register() {
     setLoading(true);
 
     try {
-      const response = await fetch(
-        'http://localhost:5000/api/users/register',
-        {
+      const response = await fetch(`${API_URL}/api/users/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

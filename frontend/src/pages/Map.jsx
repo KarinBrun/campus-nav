@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { MapPin } from 'lucide-react';
+import { API_URL } from '../config';
 import './Map.scss';
 
 function Map() {
@@ -24,7 +25,7 @@ function Map() {
         const token = localStorage.getItem('token');
 
         const response = await fetch(
-          'http://localhost:5000/api/rooms',
+          `${API_URL}/api/rooms`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

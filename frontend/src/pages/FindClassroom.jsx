@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search } from 'lucide-react';
+import { API_URL } from '../config';
 import './FindClassroom.scss';
 
 function FindClassroom() {
@@ -47,7 +48,7 @@ function FindClassroom() {
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        'http://localhost:5000/api/rooms',
+        `${API_URL}/api/rooms`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

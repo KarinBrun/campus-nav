@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { API_URL } from '../config';
 import campusImage from '../assets/GV Campus.jpg';
 import grandViewLogo from '../assets/grand-view-logo-white.jpg';
 import './Login.scss';
@@ -20,7 +21,7 @@ function Login() {
     setError('');
 
     try {
-        const response = await fetch('http://localhost:5000/api/users/login', {
+        const response = await fetch(`${API_URL}/api/users/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

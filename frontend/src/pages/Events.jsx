@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ClockPicker from './ClockPicker';
 import DatePicker from './DatePicker';
+import { API_URL } from '../config';
 import { CalendarDays, Clock3, MapPin, Repeat2, UserRound, Plus, Pencil, Trash2, Navigation, Map, UsersRound } from 'lucide-react';
 import './Events.scss';
 
@@ -42,7 +43,7 @@ function Events() {
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        'http://localhost:5000/api/pins',
+        `${API_URL}/api/pins`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -75,7 +76,7 @@ function Events() {
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        'http://localhost:5000/api/pins/mine',
+        `${API_URL}/api/pins/mine`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -177,7 +178,7 @@ const handleViewOnMap = (pin) => {
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        'http://localhost:5000/api/rooms',
+        `${API_URL}/api/rooms`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -213,7 +214,7 @@ const handleViewOnMap = (pin) => {
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        `http://localhost:5000/api/users/search?q=${encodeURIComponent(
+        `${API_URL}/api/users/search?q=${encodeURIComponent(
           userSearch.trim()
         )}`,
         {
@@ -410,7 +411,7 @@ const handleViewOnMap = (pin) => {
       };
 
       const response = await fetch(
-        'http://localhost:5000/api/pins',
+        `${API_URL}/api/pins`,
         {
           method: 'POST',
           headers: {
@@ -481,7 +482,7 @@ const handleViewOnMap = (pin) => {
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        `http://localhost:5000/api/pins/${pin._id}`,
+        `${API_URL}/api/pins/${pin._id}`,
         {
           method: 'DELETE',
           headers: {
@@ -525,7 +526,7 @@ const handleViewOnMap = (pin) => {
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        'http://localhost:5000/api/rooms',
+        `${API_URL}/api/rooms`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -634,7 +635,7 @@ const handleViewOnMap = (pin) => {
       };
 
       const response = await fetch(
-        `http://localhost:5000/api/pins/${editingPin._id}`,
+        `${API_URL}/api/pins/${editingPin._id}`,
         {
           method: 'PUT',
           headers: {
