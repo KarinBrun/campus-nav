@@ -1,0 +1,57 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  font-family: 'Inter', Arial, sans-serif;
+  font-synthesis: none;
+
+  // Grand View branding
+  --gv-red: #BA0C2F;
+  --gv-charcoal: #252525;
+
+  // Light theme (default)
+  --background: #F1F2F4;
+  --surface: #FFFFFF;
+  --text-primary: #252525;
+  --text-secondary: #606670;
+  --border-color: #E1E3E7;
+  --hover-background: #F5F5F6;
+
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --background: #17191D;
+  --surface: #272A30;
+  --text-primary: #F5F5F5;
+  --text-secondary: #B8BEC8;
+  --border-color: #444851;
+  --hover-background: #343841;
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Inter', Arial, sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}

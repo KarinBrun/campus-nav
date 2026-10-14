@@ -1,0 +1,193 @@
+/* ==========================================
+ Find Classroom Page
+ ========================================== */
+.app > .find-classroom-page {
+  min-width: 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 100px 24px 32px;
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+.find-classroom-container {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.find-classroom-container h2 {
+  margin: 0 0 6px;
+  font-size: clamp(25px, 2.4vw, 32px);
+  font-weight: 700;
+}
+
+.find-classroom-container > p {
+  margin: 0 0 24px;
+  color: var(--text-secondary);
+}
+
+.classroom-search {
+  display: flex;
+  gap: 12px;
+
+  input {
+    flex: 1;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    background: var(--surface);
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 15px;
+
+    &::placeholder {
+      color: var(--text-secondary);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--gv-red);
+      outline-offset: 1px;
+    }
+  }
+
+  button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 7px;
+    background: var(--gv-red);
+    color: white;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+}
+
+.search-results {
+  margin-top: 24px;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-top: 3px solid var(--gv-red);
+  border-radius: 12px;
+
+  h3 {
+    margin: 0 0 16px;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    svg {
+      color: var(--gv-red);
+      flex-shrink: 0;
+    }
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+}
+
+.room-result {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border-color);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  strong {
+    font-size: 18px;
+    color: var(--text-primary);
+  }
+}
+
+.room-actions {
+  display: flex;
+  gap: 12px;
+
+  .view-map-button,
+  .directions-button {
+    padding: 11px 16px;
+    border: 1px solid var(--gv-red);
+    border-radius: 7px;
+    background: var(--surface);
+    color: var(--gv-red);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      background: var(--gv-red);
+      color: white;
+    }
+  }
+}
+
+/* Match the shared tablet/mobile navigation breakpoint. */
+@media (max-width: 768px) {
+  .app > .find-classroom-page {
+    min-height: 0;
+    padding: 24px 20px 104px;
+  }
+}
+
+@media (max-width: 700px) {
+  .app > .find-classroom-page {
+    min-height: 0;
+    padding: 24px 20px 104px;
+  }
+
+  .find-classroom-container h2 {
+    font-size: 28px;
+  }
+
+  .classroom-search {
+    flex-direction: column;
+  }
+
+  .classroom-search button {
+    width: 100%;
+  }
+
+  .search-results {
+    padding: 20px;
+  }
+
+  .room-result {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .room-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .view-map-button,
+  .directions-button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,193 @@
+/* ==========================================
+   Account Settings Page
+   ========================================== */
+
+.app > .account-page {
+  min-width: 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 100px 24px 32px;
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+.account-content {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+/* Page Heading */
+
+.account-page-heading {
+  margin-bottom: 22px;
+
+  h1 {
+    margin: 0 0 6px;
+    font-size: clamp(25px, 2.4vw, 32px);
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-secondary);
+  }
+}
+
+/* Card Layout */
+
+.account-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.account-side-panels {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+
+/* Account Cards */
+
+.account-panel {
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-top: 3px solid var(--gv-red);
+  border-radius: 12px;
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 8px;
+    font-size: 19px;
+    color: var(--text-primary);
+
+    svg {
+      flex-shrink: 0;
+      color: var(--gv-red);
+    }
+  }
+
+  .account-panel-description {
+    margin: 0 0 22px;
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+}
+
+/* Compact Appearance card */
+
+.account-side-panels > .account-panel:first-child {
+  padding-bottom: 12px;
+}
+
+.account-side-panels > .account-panel:first-child .account-field {
+  margin-bottom: 0;
+}
+
+/* Form Fields */
+
+.account-field {
+  margin-bottom: 17px;
+
+  label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  input,
+  select {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 11px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    background: var(--background);
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 15px;
+  }
+
+  input:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--gv-red);
+    outline-offset: 1px;
+  }
+}
+
+/* Buttons */
+
+.account-button {
+  width: 100%;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--gv-red);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    filter: brightness(0.9);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+/* Feedback Messages */
+
+.account-message {
+  margin: 0 0 16px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.account-message-error {
+  background: #fce8ee;
+  border: 1px solid #ba0c2f;
+  color: #8d0926;
+}
+
+.account-message-success {
+  background: #e8f5ec;
+  border: 1px solid #4b9663;
+  color: #225c37;
+}
+
+/* Responsive Layout */
+
+@media (max-width: 900px) {
+  .account-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .app > .account-page {
+    padding: 20px 16px 80px;
+  }
+
+  .account-panel {
+    padding: 20px;
+  }
+
+  .account-grid,
+  .account-side-panels {
+    gap: 16px;
+  }
+}

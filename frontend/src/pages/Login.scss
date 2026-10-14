@@ -1,0 +1,229 @@
+/* Login and registration page background */
+
+.login-page {
+  min-height: 100vh;
+  width: auto;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 20px;
+  box-sizing: border-box;
+
+  background-color: #252525;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+  isolation: isolate;
+}
+
+.login-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+  z-index: -1;
+}
+
+/* Login card */
+
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  box-sizing: border-box;
+  padding: 40px;
+  background: #fff;
+  border: 1px solid #e1e1e1;
+  border-top: 4px solid #ba0c2f;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.login-card h2 {
+  margin: 0 0 10px;
+  text-align: center;
+  font-size: 30px;
+  color: #ba0c2f;
+}
+
+.login-card > p {
+  text-align: center;
+  color: #555;
+  margin: 0 0 28px;
+}
+
+.login-card > p:last-child {
+  margin: 24px 0 0;
+}
+
+/* Grand View logo */
+
+.login-logo {
+  display: block;
+  width: 220px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 20px;
+  object-fit: contain;
+}
+
+/* Form fields */
+
+.login-card .form-group {
+  margin-bottom: 20px;
+}
+
+.login-card .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #252525;
+  font-weight: 600;
+}
+
+.login-card .form-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  font-size: 16px;
+  color: #252525;
+  background: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.login-card .form-group input:focus {
+  outline: 2px solid #ba0c2f;
+  outline-offset: 1px;
+  border-color: #ba0c2f;
+}
+
+/* Keep browser autofill consistent with the gray fields */
+
+.login-card .form-group input:-webkit-autofill,
+.login-card .form-group input:-webkit-autofill:hover,
+.login-card .form-group input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #252525;
+  -webkit-box-shadow: 0 0 0 1000px #f1f1f1 inset;
+  box-shadow: 0 0 0 1000px #f1f1f1 inset;
+  caret-color: #252525;
+}
+
+/* Buttons and links */
+
+.login-button {
+  width: 100%;
+  padding: 13px;
+  background: #ba0c2f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background: #960a26;
+}
+
+.login-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.login-card a {
+  color: #ba0c2f;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-card a:hover {
+  text-decoration: underline;
+}
+
+/* Error and success messages */
+
+.login-error {
+  color: #9b0927;
+  background: #fce8ee;
+  border: 1px solid #ba0c2f;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Mobile layout */
+
+@media (max-width: 700px) {
+  .login-page {
+    padding: 24px 16px;
+  }
+
+  .login-card {
+    padding: 30px 24px;
+  }
+
+  .login-card h2 {
+    font-size: 26px;
+  }
+}
+
+/* Registration name fields */
+
+.register-name-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 700px) {
+  .register-name-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+/* Compact Create Account layout */
+
+.register-card {
+  padding: 28px 36px;
+}
+
+.register-card .login-logo {
+  width: 190px;
+  margin-bottom: 12px;
+}
+
+.register-card h2 {
+  margin-bottom: 6px;
+  font-size: 28px;
+}
+
+.register-card > p {
+  margin-bottom: 20px;
+}
+
+.register-card .form-group {
+  margin-bottom: 14px;
+}
+
+.register-card .form-group label {
+  margin-bottom: 5px;
+}
+
+.register-card .form-group input {
+  padding: 10px 12px;
+}
+
+.register-card > p:last-child {
+  margin-top: 18px;
+}
+
+@media (max-width: 700px) {
+  .register-card {
+    padding: 26px 22px;
+  }
+}

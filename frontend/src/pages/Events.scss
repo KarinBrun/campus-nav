@@ -1,0 +1,811 @@
+// Page layout
+.app > .events-page {
+  width: auto;
+  min-width: 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 100px 24px 32px;
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+.events-page {
+  .pin-list,
+  .pin-card {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .pin-card {
+    overflow-wrap: anywhere;
+  }
+}
+
+.events-header {
+  max-width: 1160px;
+  margin: 0 auto 24px;
+
+  h2 {
+    margin: 0 0 6px;
+    font-size: clamp(25px, 2.4vw, 32px);
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-secondary);
+  }
+}
+
+// Event cards
+.pin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.pin-card {
+  background: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.pin-card p,
+.pin-card .pin-details {
+  color: var(--text-primary);
+}
+
+.pin-card .pin-description {
+  color: var(--text-secondary);
+}
+
+.pin-card h3 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gv-red);
+}
+
+.pin-card p {
+  margin: 6px 0;
+}
+
+.pin-type {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border-radius: 15px;
+  background-color: #fbeaec;
+  color: #b30838;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.pin-description {
+  margin-bottom: 15px !important;
+}
+
+.pin-details {
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+}
+
+.no-pins-message {
+  padding: 20px;
+  background-color: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+// Filters: All / Events / Study Groups
+.event-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+
+  button {
+    padding: 11px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    background: var(--surface);
+    color: var(--text-primary);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      border-color: var(--gv-red);
+      color: var(--gv-red);
+    }
+
+    &.active {
+      background: var(--gv-red);
+      border-color: var(--gv-red);
+      color: white;
+
+      &:hover {
+        filter: brightness(0.9);
+        color: white;
+      }
+    }
+  }
+}
+
+.pin-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+
+  .view-map-button,
+  .pin-directions-button {
+    padding: 11px 16px;
+    border: 1px solid var(--gv-red);
+    border-radius: 7px;
+    background: var(--surface);
+    // Lightens red against dark surfaces without changing the hover color.
+    color: color-mix(in srgb, var(--gv-red) 65%, var(--text-primary));
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      background: var(--gv-red);
+      color: white;
+    }
+  }
+}
+
+// Create / edit event modal
+.pin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.pin-modal {
+  width: 100%;
+  max-width: 550px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  background: var(--background);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.pin-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.pin-modal-header h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.pin-modal-close {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--hover-background);
+  }
+}
+
+.pin-modal label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.pin-modal input,
+.pin-modal select,
+.pin-modal textarea {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  min-height: 48px;
+  padding: 11px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--text-primary);
+  font: inherit;
+  font-weight: 400;
+}
+
+.pin-modal textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.pin-modal .recurring-checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+.recurring-checkbox input {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--gv-red);
+}
+
+.pin-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cancel-pin-button,
+.submit-pin-button {
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cancel-pin-button {
+  background-color: var(--surface);
+  color: var(--gv-red);
+  border: 1px solid var(--gv-red);
+}
+
+.submit-pin-button {
+  background-color: var(--gv-red);
+  color: white;
+  border: 1px solid var(--gv-red);
+}
+
+.pin-modal select:disabled {
+  background-color: var(--hover-background);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+}
+
+// Pagination and feedback
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.pagination button {
+  padding: 9px 16px;
+  background-color: var(--surface);
+  color: var(--gv-red);
+  border: 1px solid var(--gv-red);
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: var(--hover-background);
+}
+
+.pagination button:disabled {
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-weight: bold;
+  color: var(--text-secondary);
+}
+
+.create-message {
+  padding: 12px 15px;
+  margin: 15px 0;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.create-message.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.create-message.error {
+  background-color: #fbeaec;
+  color: #b30838;
+  border: 1px solid #e5a7b8;
+}
+
+// Header actions: Create Event or Study Group / My Pins
+.events-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+
+  button {
+    margin: 0;
+    padding: 12px 20px;
+    border-radius: 7px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .create-pin-button {
+    background: var(--gv-red);
+    color: white;
+    border: 1px solid var(--gv-red);
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+
+  .my-pins-button {
+    background: var(--surface);
+    color: var(--gv-red);
+    border: 1px solid var(--gv-red);
+
+    &:hover {
+      background: var(--gv-red);
+      color: white;
+    }
+  }
+}
+
+.delete-pin-button {
+  padding: 10px 16px;
+  background-color: var(--surface);
+  color: var(--gv-red);
+  border: 1px solid var(--gv-red);
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.delete-pin-button:hover {
+  background-color: var(--hover-background);
+}
+
+.edit-pin-button {
+  padding: 10px 16px;
+  background-color: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.edit-pin-button:hover {
+  background-color: var(--hover-background);
+}
+
+/* Private event sharing */
+
+.private-sharing {
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-primary);
+}
+
+.user-search-row {
+  display: flex;
+  gap: 8px;
+}
+
+.user-search-row input {
+  flex: 1;
+}
+
+.user-search-row button {
+  padding: 10px 16px;
+  background-color: var(--gv-red);
+  color: white;
+  border: 1px solid var(--gv-red);
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.user-search-row button:hover {
+  opacity: 0.9;
+}
+
+.user-search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.user-search-result {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+
+.user-search-result span {
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.user-search-result button {
+  padding: 7px 12px;
+  background-color: var(--surface);
+  color: var(--gv-red);
+  border: 1px solid var(--gv-red);
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.user-search-result button:hover {
+  background-color: var(--gv-red);
+  color: white;
+}
+
+.shared-users {
+  margin-top: 15px;
+}
+
+.shared-users > p {
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+
+.shared-user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  margin-top: 8px;
+  background-color: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+
+.shared-user span {
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.shared-user button {
+  padding: 7px 12px;
+  background-color: var(--surface);
+  color: var(--gv-red);
+  border: 1px solid var(--gv-red);
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.shared-user button:hover {
+  background-color: var(--gv-red);
+  color: white;
+}
+
+// Date and time fields
+.event-date-time-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 14px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+
+.event-date-time-fields > label,
+.event-date-time-fields > .clock-picker {
+  margin: 0;
+}
+
+.event-date-time-fields > label {
+  display: flex;
+  flex-direction: column;
+}
+
+.pin-modal .event-date-time-fields > label > input[type='date'] {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 2px;
+  min-height: 48px;
+  font-weight: 400;
+  // Keep the native calendar indicator visible on light inputs.
+  color-scheme: light;
+
+  &::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    filter: none;
+    cursor: pointer;
+  }
+}
+
+.event-date-time-fields .clock-picker-label {
+  margin-bottom: 6px;
+}
+
+.event-date-time-fields .clock-picker-button {
+  min-height: 48px;
+  box-sizing: border-box;
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--text-primary);
+}
+
+// Mobile layout
+@media (max-width: 700px) {
+  .app > .events-page {
+    padding: 24px 20px 76px;
+  }
+
+  .events-header h2 {
+    font-size: 28px;
+  }
+
+  .events-header-actions {
+    flex-direction: column;
+  }
+
+  .create-pin-button,
+  .my-pins-button {
+    width: 100%;
+  }
+
+  .event-filters {
+    flex-direction: column;
+  }
+
+  .event-filters button {
+    width: 100%;
+  }
+
+  .pin-card {
+    padding: 18px;
+  }
+
+  .pin-actions {
+    flex-direction: column;
+  }
+
+  .view-map-button,
+  .pin-directions-button,
+  .edit-pin-button,
+  .delete-pin-button {
+    width: 100%;
+  }
+
+  .pin-modal-overlay {
+    padding: 10px;
+  }
+
+  .pin-modal {
+    padding: 20px;
+    box-sizing: border-box;
+    max-height: 95vh;
+  }
+
+  .pin-modal-actions {
+    flex-direction: column;
+  }
+
+  .cancel-pin-button,
+  .submit-pin-button {
+    width: 100%;
+  }
+
+  .pagination {
+    gap: 10px;
+  }
+
+  .pagination button {
+    padding: 9px 12px;
+  }
+
+  .user-search-row {
+    flex-direction: column;
+  }
+
+  .user-search-row button {
+    width: 100%;
+  }
+
+  .user-search-result,
+  .shared-user {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .user-search-result button,
+  .shared-user button {
+    width: 100%;
+  }
+
+  .event-date-time-fields {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 20px;
+  }
+
+  .event-date-time-fields > label,
+  .event-date-time-fields > .clock-picker {
+    width: 100%;
+  }
+}
+
+.events-page input[type="date"] {
+  color-scheme: light;
+}
+
+.events-page input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: none;
+  opacity: 1;
+}
+
+// Coordinated Events & Study Groups redesign
+.events-header { margin-bottom: 20px; }
+.events-header-actions { margin-top: 20px; }
+.events-header-actions button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.event-filters { margin-bottom: 18px; }
+.pin-list { max-width: 1160px; margin: 0 auto; gap: 14px; }
+.pin-card { padding: 22px 24px 18px; border-radius: 12px; }
+.pin-card--study { border-left: 3px solid var(--text-secondary); }
+.pin-card--event { border-left: 3px solid var(--gv-red); }
+.pin-card-top { display: flex; gap: 16px; align-items: flex-start; }
+.pin-card-icon { width: 42px; height: 42px; flex: 0 0 42px; display: grid; place-items: center; border-radius: 12px; background: color-mix(in srgb, var(--gv-red) 9%, var(--surface)); color: var(--gv-red); }
+.pin-card--study .pin-card-icon { color: var(--text-secondary); background: var(--hover-background); }
+.pin-card-content { min-width: 0; flex: 1; }
+.pin-card-title-row { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.pin-card .pin-card-title-row h3 { margin: 0; font-size: 21px; line-height: 1.3; color: var(--text-primary); font-weight: 700; }
+.pin-card .pin-type { margin: 0; font-size: 12px; padding: 5px 10px; white-space: nowrap; }
+.pin-card--study .pin-type { background: var(--hover-background); color: var(--text-primary); }
+.pin-card .pin-description { margin: 7px 0 0 !important; line-height: 1.5; font-size: 15px; color: var(--text-secondary); }
+.pin-card .pin-details { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color); color: var(--text-secondary); }
+.pin-detail { display: inline-flex; gap: 7px; align-items: center; min-width: 0; font-size: 14px; line-height: 1.45; overflow-wrap: anywhere; }
+.pin-detail svg { flex: 0 0 auto; color: var(--text-secondary); }
+.pin-actions { flex-wrap: wrap; margin-top: 18px; gap: 9px; }
+.pin-actions .view-map-button, .pin-actions .pin-directions-button, .pin-actions .edit-pin-button, .pin-actions .delete-pin-button { display: inline-flex; justify-content: center; align-items: center; gap: 7px; min-width: 0; white-space: normal; padding: 10px 14px; font: inherit; font-size: 14px; font-weight: 600; border-radius: 7px; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.pin-actions .view-map-button { background: var(--surface); color: var(--gv-red); border: 1px solid var(--gv-red); }
+.pin-actions .view-map-button:hover { background: var(--gv-red); color: #fff; border-color: var(--gv-red); }
+.pin-actions .pin-directions-button { background: var(--gv-red); border: 1px solid var(--gv-red); color: #fff; }
+.pin-actions .pin-directions-button:hover { background: color-mix(in srgb, var(--gv-red) 85%, black); color: #fff; }
+.pin-actions .edit-pin-button { background: var(--surface); color: var(--text-primary); border: 1px solid var(--border-color); }
+.pin-actions .edit-pin-button:hover { background: #343a40; color: #fff; border-color: #343a40; }
+.pin-actions .delete-pin-button { background: var(--surface); color: var(--gv-red); border: 1px solid var(--gv-red); }
+.pin-actions .delete-pin-button:hover { background: var(--gv-red); color: #fff; border-color: var(--gv-red); }
+.pin-modal { background: var(--surface); }
+.pin-modal-header h3 { display: flex; align-items: center; gap: 11px; }
+.pin-modal-header h3 svg { color: var(--gv-red); flex-shrink: 0; }
+.pin-modal input:not([type='checkbox']), .pin-modal select, .pin-modal textarea, .pin-modal .event-date-time-fields .clock-picker-button { background: var(--background); }
+.pin-modal .private-sharing { background: var(--background); }
+.pin-modal .cancel-pin-button:hover { background: var(--gv-red); color: #fff; border-color: var(--gv-red); }
+.pin-modal .submit-pin-button:hover { background: color-mix(in srgb, var(--gv-red) 85%, black); }
+@media (max-width: 700px) {
+  .pin-card { padding: 16px; }
+  .pin-card-top { gap: 10px; }
+  .pin-card-icon { width: 36px; height: 36px; flex-basis: 36px; }
+  .pin-card .pin-card-title-row h3 { font-size: 18px; }
+  .pin-card .pin-details { gap: 9px 16px; }
+  .pin-detail { width: 100%; }
+  .pin-actions { flex-direction: row; }
+  .pin-actions .view-map-button, .pin-actions .pin-directions-button { flex: 1 1 130px; width: auto; }
+  .pin-actions .edit-pin-button, .pin-actions .delete-pin-button { flex: 1 1 90px; width: auto; }
+  .pin-modal-header h3 { font-size: 21px; }
+}
+
+
+// Schedule-matched Create / Edit Event modal proportions
+.pin-modal {
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  padding: 25px;
+  font-size: 15px;
+}
+.pin-modal-header {
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+.pin-modal-header h3 { font-size: 22px; line-height: 1.3; }
+.pin-modal-header h3 svg { width: 21px; height: 21px; }
+.pin-modal label {
+  gap: 5px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.pin-modal input:not([type='checkbox']),
+.pin-modal select,
+.pin-modal textarea {
+  min-height: 44px;
+  padding: 10px 12px;
+  font-size: 15px;
+}
+.pin-modal textarea { min-height: 90px; }
+.pin-modal .event-date-time-fields { column-gap: 16px; row-gap: 10px; margin-bottom: 12px; }
+.pin-modal .event-date-time-fields > label { margin-bottom: 0; }
+.pin-modal .event-date-time-fields > label > input[type='date'] { min-height: 44px; }
+.pin-modal .event-date-time-fields .clock-picker-button { min-height: 44px; font-size: 15px; }
+.pin-modal-actions { margin-top: 16px; }
+.pin-modal-actions button { font-size: 14px; padding: 10px 16px; }
+.pin-modal .recurring-checkbox { margin-bottom: 10px; }
+
+@media (max-width: 700px) {
+  .pin-modal { width: 100%; max-height: 95vh; padding: 16px; }
+  .pin-modal-header h3 { font-size: 20px; }
+  .pin-modal .event-date-time-fields { grid-template-columns: 1fr; gap: 12px; }
+}
+
+// Custom calendar layout matches the time picker grid.
+.pin-modal .event-date-time-fields > .custom-date-picker { min-width: 0; }
+
+// Tablet portrait: match the mobile navigation breakpoint without
+// changing the compact layout rules reserved for 700px and below.
+@media (min-width: 701px) and (max-width: 768px) {
+  .app > .events-page {
+    padding-top: 24px;
+  }
+}
+
+
+// Keep scrollable content clear of the fixed bottom navigation.
+@media (max-width: 768px) {
+  .app > .events-page {
+    padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px));
+  }
+}

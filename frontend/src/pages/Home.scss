@@ -1,0 +1,424 @@
+/* Home page layout */
+.home {
+  padding: 50px 40px;
+}
+
+.welcome-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 250px;
+  padding: 32px 40px;
+  margin-top: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center 48%;
+  text-align: left;
+  color: #fff;
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(20, 24, 30, 0.88) 0%,
+      rgba(20, 24, 30, 0.65) 42%,
+      rgba(20, 24, 30, 0.12) 100%
+    );
+    z-index: -1;
+  }
+}
+
+.welcome-content {
+  position: relative;
+  z-index: 1;
+
+  h2 {
+    margin: 0 0 10px;
+    font-size: clamp(24px, 2.6vw, 36px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+  }
+
+  p {
+    margin: 0;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.92);
+  }
+}
+
+/* Dashboard grid and shared cards */
+.home-info {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 16px;
+  width: 100%;
+  margin: 20px 0 0;
+}
+
+.home-info .info-card {
+  height: fit-content;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-top: 3px solid var(--gv-red);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text-primary);
+  text-align: left;
+}
+
+.today-schedule-header,
+.upcoming-events-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-color);
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+
+    svg {
+      flex-shrink: 0;
+      color: var(--gv-red);
+    }
+  }
+}
+
+.today-schedule-header {
+  justify-content: space-between;
+
+  > span {
+    font-size: 12px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+}
+
+.today-schedule-list,
+.upcoming-events-list {
+  background: var(--surface);
+}
+
+.today-schedule-footer,
+.upcoming-events-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  color: var(--gv-red);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.today-schedule-empty,
+.upcoming-events-empty {
+  padding: 24px 18px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+/* Today's Schedule */
+.today-schedule-row {
+  display: grid;
+  grid-template-columns: 72px 38px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 10px;
+  min-height: 68px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--surface);
+
+  &.highlighted {
+    padding-left: 12px;
+    border-left: 4px solid var(--gv-red);
+    background: #fff0f3;
+  }
+}
+
+.today-schedule-time {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  white-space: nowrap;
+
+  strong {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  span {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+}
+
+.today-schedule-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--hover-background);
+  color: var(--gv-red);
+}
+
+.today-schedule-details {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+
+  > strong {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--text-primary);
+  }
+}
+
+.today-schedule-course-code {
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.today-schedule-location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-secondary);
+
+  svg { flex-shrink: 0; }
+}
+
+.today-schedule-directions,
+.upcoming-event-directions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  text-decoration: none;
+
+  &:hover { color: var(--gv-red); }
+}
+
+/* Upcoming Events */
+.upcoming-event-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 90px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--surface);
+}
+
+.upcoming-event-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 64px;
+  min-height: 76px;
+  padding: 7px 4px;
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+  background: #f1f2f4;
+  text-align: center;
+
+  .event-month {
+    color: var(--gv-red);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .event-day {
+    color: var(--text-primary);
+    font-size: 25px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .event-weekday {
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+  }
+}
+
+.upcoming-event-details {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+
+  > strong {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+}
+
+.upcoming-event-type {
+  font-size: 12px;
+  color: var(--gv-red);
+  font-weight: 600;
+}
+
+.upcoming-event-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.4;
+
+  svg { flex-shrink: 0; }
+}
+
+.upcoming-event-directions { 
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* Dark mode */
+:root[data-theme='dark'] {
+  .today-schedule-row.highlighted { background: #3d252d; }
+  .upcoming-event-date { background: #303036; }
+}
+
+/* Desktop Home spacing */
+@media (min-width: 701px) {
+  .home {
+    padding: 20px 20px 24px;
+  }
+}
+
+/* Mobile Home */
+@media (max-width: 700px) {
+  .home { padding: 8px 16px 5px; }
+
+  .welcome-section,
+  .mobile-next-up,
+  .home-info,
+  .home-info .info-card {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+  }
+
+  .welcome-section {
+    min-height: 180px;
+    margin-top: 0;
+    padding: 22px;
+    background-position: center;
+  }
+
+  .welcome-content {
+    h2 { font-size: 22px; }
+    p { font-size: 12px; }
+  }
+
+  .mobile-next-up {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+
+    .next-up-card {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid var(--border-color);
+      border-top: 3px solid var(--gv-red);
+    }
+  }
+
+  .home-info {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .today-schedule-header,
+  .upcoming-events-header {
+    padding: 14px 12px;
+
+    h3 { font-size: 14px; }
+  }
+
+  .today-schedule-header {
+    h3 { gap: 6px; }
+    > span { font-size: 10px; }
+  }
+
+  .today-schedule-row {
+    grid-template-columns: 58px 34px minmax(0, 1fr) 16px;
+    gap: 8px;
+    min-height: 64px;
+    padding: 10px 12px;
+
+    &.highlighted { padding-left: 8px; }
+  }
+
+  .today-schedule-icon {
+    width: 34px;
+    height: 34px;
+
+    svg { width: 16px; height: 16px; }
+  }
+
+  .today-schedule-time {
+    strong { font-size: 11px; }
+    span { font-size: 10px; }
+  }
+
+  .today-schedule-details > strong { font-size: 13px; }
+  .today-schedule-course-code { font-size: 10px; }
+  .today-schedule-location { font-size: 11px; }
+
+  .upcoming-event-row {
+    gap: 12px;
+    min-height: 72px;
+    padding: 12px;
+  }
+
+  .upcoming-event-date {
+    width: 54px;
+    min-height: 68px;
+    padding: 6px 3px;
+
+    .event-month { font-size: 10px; }
+    .event-day { font-size: 22px; }
+    .event-weekday { font-size: 10px; }
+  }
+
+  .upcoming-event-details > strong { font-size: 12px; }
+  .upcoming-event-type,
+  .upcoming-event-meta { font-size: 11px; }
+}

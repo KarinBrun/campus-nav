@@ -1,0 +1,126 @@
+.custom-date-picker {
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  font-size: 15px;
+}
+
+.custom-date-picker-label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.custom-date-picker-trigger {
+  display: flex;
+  width: 100%;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--background);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.custom-date-picker-trigger svg { flex-shrink: 0; color: var(--text-secondary); }
+.custom-date-placeholder { color: var(--text-secondary); }
+
+.custom-date-picker-trigger:focus-visible,
+.custom-date-calendar button:focus-visible {
+  outline: 2px solid var(--gv-red);
+  outline-offset: 2px;
+}
+
+.custom-date-calendar {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 30;
+  width: min(310px, calc(100vw - 72px));
+  box-sizing: border-box;
+  padding: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text-primary);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .18);
+}
+
+.custom-date-calendar-header,
+.custom-date-calendar-navigation,
+.custom-date-calendar-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.custom-date-calendar-header { margin-bottom: 12px; }
+.custom-date-calendar-header strong { font-size: 15px; }
+.custom-date-calendar-navigation { gap: 4px; }
+
+.custom-date-calendar button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.custom-date-calendar-navigation button,
+.custom-date-calendar-footer button {
+  display: grid;
+  place-items: center;
+  padding: 6px 9px;
+  background: transparent;
+  color: var(--text-primary);
+  border: 0;
+  border-radius: 6px;
+}
+
+.custom-date-calendar-navigation button:hover,
+.custom-date-calendar-footer button:hover {
+  background: var(--gv-red);
+  color: white;
+}
+
+.custom-date-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 3px;
+  text-align: center;
+}
+
+.custom-date-weekday {
+  padding: 7px 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.custom-date-day {
+  aspect-ratio: 1;
+  min-width: 0;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 13px !important;
+  padding: 0 !important;
+}
+
+.custom-date-day:hover { background: var(--gv-red); color: #fff; }
+.custom-date-day.is-today { border-color: var(--gv-red); }
+.custom-date-day.is-selected,
+.custom-date-day.is-selected:hover { background: var(--gv-red); color: white; }
+
+.custom-date-calendar-footer {
+  margin-top: 12px;
+  padding-top: 9px;
+  border-top: 1px solid var(--border-color);
+}
+.custom-date-calendar-footer button { color: var(--gv-red); font-size: 13px; }

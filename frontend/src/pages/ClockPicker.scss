@@ -1,0 +1,172 @@
+.clock-picker {
+  position: relative;
+  width: 100%;
+}
+
+.clock-picker-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.clock-picker-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover { border-color: var(--gv-red); }
+  &:focus-visible { outline: 2px solid var(--gv-red); outline-offset: 1px; }
+}
+
+.clock-picker-icon {
+  color: var(--text-secondary);
+  font-size: 22px;
+}
+
+.clock-picker-popup {
+  position: absolute;
+  z-index: 2000;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 290px;
+  max-width: calc(100vw - 40px);
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text-primary);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+}
+
+.clock-time-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+  font-size: 22px;
+  font-weight: 700;
+
+  button {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--text-secondary);
+    font: inherit;
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
+
+    &.active { background: var(--gv-red); color: white; }
+  }
+}
+
+.clock-period {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-left: 10px;
+
+  button { padding: 4px 8px; font-size: 12px; font-weight: 600; }
+}
+
+.analog-clock {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background: var(--hover-background);
+}
+
+.clock-hand {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  transform-origin: center bottom;
+  border-radius: 4px;
+  background: var(--gv-red);
+  pointer-events: none;
+  transition: transform 0.25s ease;
+  z-index: 1;
+}
+
+.clock-hour-hand { width: 5px; height: 65px; }
+.clock-minute-hand { width: 3px; height: 90px; }
+
+.clock-center {
+  position: absolute;
+  top: 122px;
+  left: 122px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gv-red);
+  z-index: 2;
+}
+
+.clock-number {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 15px;
+  cursor: pointer;
+
+  &:hover, &.selected, &.selected:hover {
+    background: var(--gv-red);
+    color: white;
+  }
+}
+
+.clock-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 4px;
+  margin-top: -12px;
+
+  button {
+    padding: 10px 18px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--gv-red);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover { background: var(--hover-background); }
+    &:last-child {
+      background: var(--gv-red);
+      color: white;
+      &:hover { filter: brightness(0.9); }
+    }
+  }
+}
+
+// In the Events modal, anchor the popup to the right edge of its
+// time field so it cannot extend past the modal's scrollable content.
+.event-date-time-fields .clock-picker-popup {
+  left: auto;
+  right: 0;
+}
