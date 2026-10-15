@@ -4,6 +4,16 @@ Campus Nav is a full-stack web application designed to help Grand View Universit
 
 The application combines interactive 3D indoor maps with personalized scheduling and navigation features to make navigating campus easier and more accessible.
 
+## Live Application
+
+Campus Nav is deployed and available online.
+
+**[Launch Campus Nav](https://campus-nav-ruby.vercel.app/)**
+
+The React frontend is hosted on Vercel, while the Node.js and Express backend is hosted on Render. MongoDB Atlas provides cloud database storage.
+
+Users can create an account to explore the campus map, find classrooms, manage schedules, and create campus events.
+
 ## Features
 
 ### Interactive Campus Navigation
@@ -105,43 +115,82 @@ These improvements would help Campus Nav become a more complete campus navigatio
 
 ### Prerequisites
 
-- Node.js and npm
-- MongoDB Atlas database
-- Required environment variables for the backend and frontend
+Before running Campus Nav locally, make sure you have:
 
-### Backend
+- Node.js and npm installed
+- A MongoDB Atlas database
+- Access to the required environment variables
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/KarinBrun/campus-nav.git
+cd campus-nav
+```
+
+### 2. Set Up the Backend
+
+Navigate to the backend directory and install dependencies:
 
 ```bash
 cd backend
 npm install
+```
+
+Create a `.env` file in the `backend` directory and configure the required environment variables, including the MongoDB connection string and JWT secret.
+
+Start the backend development server:
+
+```bash
 npm run dev
 ```
 
-### Frontend
+### 3. Set Up the Frontend
 
-In a separate terminal:
+Open a separate terminal in the root directory of the Campus Nav repository, then run the following commands:
 
 ```bash
 cd frontend
 npm install
+```
+
+Configure the frontend environment variables to connect to the local backend API.
+
+Start the frontend development server:
+
+```bash
 npm run dev
 ```
 
-Environment variables must be configured before running the application. Sensitive credentials are not included in this repository.
+### 4. Open the Application
+
+Open the local URL displayed in the frontend terminal to access Campus Nav.
+
+**Note:** Environment variables must be configured before running the application. Sensitive credentials are not included in this repository.
 
 ## Project Background
 
-Campus Nav was developed as a software development and project management project at Grand View University.
+Campus Nav began as a university project at Grand View University, combining software development and project management.
 
-The application demonstrates full-stack development, REST API integration, database design, authentication, responsive interface design, and the integration of third-party mapping technology.
+The goal was to create an application that helps students navigate campus more easily, particularly when locating classrooms in unfamiliar buildings. I wanted to bring indoor navigation, class schedules, and campus events together in one application.
 
+Because the application could not connect directly to university systems, I had to build and manage the classroom and scheduling data independently. The project also required adapting to the limitations of Mappedin's free tier while maintaining a functional and user-friendly experience.
 
-## Live Application
+## About the Developer
 
-Campus Nav is deployed and available online.
+Campus Nav was developed by **Karin Brun**, a Computer Science student at Grand View University.
 
-**[Launch Campus Nav](https://campus-nav-ruby.vercel.app/)**
+Although Campus Nav was originally assigned as a group project, I ultimately took on full responsibility for designing, developing, testing, and deploying the application due to a lack of contributions from the other team members.
 
-The React frontend is hosted on Vercel, while the Node.js and Express backend is hosted on Render. MongoDB Atlas provides cloud database storage.
+My work included:
 
-Users can create an account to explore the campus map, find classrooms, manage schedules, and create campus events.
+- Designing and implementing the React frontend
+- Developing the Node.js and Express REST API
+- Creating and managing the MongoDB database
+- Integrating Mappedin for interactive campus navigation
+- Implementing authentication, schedules, and event management
+- Testing and debugging application functionality
+- Configuring deployment with Vercel and Render
+- Designing the responsive interface with light and dark modes
+
+**Portfolio:** [karinbrun.name](https://karinbrun.name/)
