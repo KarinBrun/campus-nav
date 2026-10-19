@@ -46,6 +46,19 @@ const [rooms, setRooms] = useState([]);
 const [selectedBuilding, setSelectedBuilding] = useState('');
 const [editingScheduleItem, setEditingScheduleItem] = useState(null);
 
+const [scheduleValidation, setScheduleValidation] = useState(false);
+
+const validateScheduleItem = () => {
+  setScheduleValidation(true);
+
+  return (
+    scheduleItemForm.title.trim() !== '' &&
+    scheduleItemForm.days.length > 0 &&
+    scheduleItemForm.startTime !== '' &&
+    scheduleItemForm.endTime !== ''
+  );
+};
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,8 +67,10 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
     const handleEscape = (event) => {
       if (event.key === 'Escape') {
         setShowAddClass(false);
+        setClassSearch('');
         setShowAddScheduleItem(false);
         setEditingScheduleItem(null);
+        setScheduleValidation(false);
       }
     };
 
@@ -174,15 +189,7 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
   }, []);
 
   const handleAddScheduleItem = async () => {
-    if (
-      !scheduleItemForm.title.trim() ||
-      scheduleItemForm.days.length === 0 ||
-      !scheduleItemForm.startTime ||
-      !scheduleItemForm.endTime
-    ) {
-      alert(
-        'Please enter a title, select at least one day, and enter the start and end times.'
-      );
+    if (!validateScheduleItem()) {
       return;
     }
 
@@ -243,15 +250,7 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
   };
 
   const handleUpdateScheduleItem = async () => {
-    if (
-      !scheduleItemForm.title.trim() ||
-      scheduleItemForm.days.length === 0 ||
-      !scheduleItemForm.startTime ||
-      !scheduleItemForm.endTime
-    ) {
-      alert(
-        'Please enter a title, select at least one day, and enter the start and end times.'
-      );
+    if (!validateScheduleItem()) {
       return;
     }
 
@@ -314,6 +313,7 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
 
   const handleOpenAddClass = async () => {
     setAddMessage('');
+    setClassSearch('');
 
     try {
       const token = localStorage.getItem('token');
@@ -421,6 +421,7 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
 
   const handleEditScheduleItem = (item) => {
     setEditingScheduleItem(item);
+    setScheduleValidation(false);
 
     setScheduleItemForm({
       title: item.title || '',
@@ -440,6 +441,7 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
 
   const handleOpenAddScheduleItem = () => {
     setEditingScheduleItem(null);
+    setScheduleValidation(false);
 
     setScheduleItemForm({
       title: '',
@@ -918,6 +920,7 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
                     setShowAddScheduleItem(false);
                     setEditingScheduleItem(null);
                     setSelectedBuilding('');
+                    setScheduleValidation(false);
 
                     setScheduleItemForm({
                       title: '',
@@ -938,6 +941,11 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
                   Title
                   <input
                     type="text"
+                    className={
+                      scheduleValidation && !scheduleItemForm.title.trim()
+                        ? 'schedule-field-error'
+                        : ''
+                    }
                     value={scheduleItemForm.title}
                     onChange={(e) =>
                       setScheduleItemForm({
@@ -1033,8 +1041,14 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
                   </label>
                 )}
 
-                <div className="schedule-item-days">
-                  <p>Days</p>
+                  <div
+                    className={`schedule-item-days ${
+                      scheduleValidation && scheduleItemForm.days.length === 0
+                        ? 'schedule-field-error'
+                        : ''
+                    }`}
+                  >
+                    <p>Days</p>
 
                   {daysOfWeek.map((day) => (
                     <label key={day}>
@@ -1068,27 +1082,43 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
                   ))}
                 </div>
 
-                <ClockPicker
-                  label="Start Time"
-                  value={scheduleItemForm.startTime}
-                  onChange={(time) =>
-                    setScheduleItemForm({
-                      ...scheduleItemForm,
-                      startTime: time,
-                    })
+                <div
+                  className={
+                    scheduleValidation && !scheduleItemForm.startTime
+                      ? 'schedule-clock-error'
+                      : ''
                   }
-                />
+                >
+                  <ClockPicker
+                    label="Start Time"
+                    value={scheduleItemForm.startTime}
+                    onChange={(time) =>
+                      setScheduleItemForm({
+                        ...scheduleItemForm,
+                        startTime: time,
+                      })
+                    }
+                  />
+                </div>
 
-                <ClockPicker
-                  label="End Time"
-                  value={scheduleItemForm.endTime}
-                  onChange={(time) =>
-                    setScheduleItemForm({
-                      ...scheduleItemForm,
-                      endTime: time,
-                    })
+                <div
+                  className={
+                    scheduleValidation && !scheduleItemForm.endTime
+                      ? 'schedule-clock-error'
+                      : ''
                   }
-                />
+                >
+                  <ClockPicker
+                    label="End Time"
+                    value={scheduleItemForm.endTime}
+                    onChange={(time) =>
+                      setScheduleItemForm({
+                        ...scheduleItemForm,
+                        endTime: time,
+                      })
+                    }
+                  />
+                </div>
 
                 <button
                   type="button"
@@ -1118,9 +1148,10 @@ const [editingScheduleItem, setEditingScheduleItem] = useState(null);
                   type="button"
                   className="close-modal-button"
                   aria-label="Close Add Class"
-                  onClick={() =>
-                    setShowAddClass(false)
-                  }
+                  onClick={() => {
+                    setClassSearch('');
+                    setShowAddClass(false);
+                  }}
                 >
                   ×
                 </button>

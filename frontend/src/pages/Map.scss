@@ -192,7 +192,7 @@
   }
 
   .map-container {
-    height: calc(100dvh - 315px);
+    height: calc(100dvh - 275px);
     min-height: 0;
   }
 
@@ -220,10 +220,10 @@
 }
 
 
-// Keep scrollable content clear of the fixed bottom navigation.
+// Keep a small gap above the mobile navigation.
 @media (max-width: 768px) {
   .app > .map-page {
-    padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
   }
 }
 
@@ -232,5 +232,12 @@
   .map-container {
     height: calc(100dvh - 300px);
     min-height: 320px;
+  }
+}
+
+@media (max-width: 700px) {
+  .app > main.map-page {
+    min-height: 0;
+    padding-bottom: 12px;
   }
 }

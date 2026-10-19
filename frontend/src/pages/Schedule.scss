@@ -571,3 +571,21 @@
     padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px));
   }
 }
+
+/* Required-field validation */
+.schedule-page {
+  .schedule-item-form {
+    input.schedule-field-error,
+    .schedule-item-days.schedule-field-error {
+      border: 2px solid #dc3545;
+      box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.12);
+      border-radius: 6px;
+    }
+
+    .schedule-clock-error {
+      border: 2px solid #dc3545;
+      box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.12);
+      border-radius: 6px;
+    }
+  }
+}

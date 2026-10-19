@@ -37,6 +37,7 @@ function Events() {
   const [createMessageType, setCreateMessageType] = useState('');
   const [view, setView] = useState('upcoming');
   const [editingPin, setEditingPin] = useState(null);
+  const [pinValidation, setPinValidation] = useState(false);
 
   const loadPins = async () => {
     try {
@@ -174,6 +175,8 @@ const handleViewOnMap = (pin) => {
     setEditingPin(null);
     setCreateMessage('');
     setCreateMessageType('');
+    setPinValidation(false);
+
     try {
       const token = localStorage.getItem('token');
 
@@ -310,6 +313,7 @@ const handleViewOnMap = (pin) => {
     setEditingPin(null);
     setCreateMessage('');
     setCreateMessageType('');
+    setPinValidation(false);
     setShowCreatePin(false);
   };
 
@@ -356,12 +360,16 @@ const handleViewOnMap = (pin) => {
     setCreateMessage('');
     setCreateMessageType('');
 
+    setPinValidation(true);
+
     if (
-      !pinForm.title ||
+      !pinForm.title.trim() ||
       !pinForm.building ||
       !pinForm.roomId ||
-      !pinForm.startTime ||
-      !pinForm.endTime
+      !getDatePart(pinForm.startTime) ||
+      !getTimePart(pinForm.startTime) ||
+      !getDatePart(pinForm.endTime) ||
+      !getTimePart(pinForm.endTime)
     ) {
       setCreateMessage('Please complete all required fields.');
       setCreateMessageType('error');
@@ -569,6 +577,7 @@ const handleViewOnMap = (pin) => {
 
       setCreateMessage('');
       setCreateMessageType('');
+      setPinValidation(false);
       setShowCreatePin(true);
     } catch (error) {
       console.error(error);
@@ -580,12 +589,16 @@ const handleViewOnMap = (pin) => {
     setCreateMessage('');
     setCreateMessageType('');
 
+    setPinValidation(true);
+
     if (
-      !pinForm.title ||
+      !pinForm.title.trim() ||
       !pinForm.building ||
       !pinForm.roomId ||
-      !pinForm.startTime ||
-      !pinForm.endTime
+      !getDatePart(pinForm.startTime) ||
+      !getTimePart(pinForm.startTime) ||
+      !getDatePart(pinForm.endTime) ||
+      !getTimePart(pinForm.endTime)
     ) {
       setCreateMessage('Please complete all required fields.');
       setCreateMessageType('error');
@@ -864,6 +877,11 @@ const handleViewOnMap = (pin) => {
               Title
               <input
                 type="text"
+                className={
+                  pinValidation && !pinForm.title.trim()
+                    ? 'pin-field-error'
+                    : ''
+                }
                 value={pinForm.title}
                 onChange={(e) =>
                   setPinForm({
@@ -997,6 +1015,11 @@ const handleViewOnMap = (pin) => {
             <label>
               Building
               <select
+                className={
+                  pinValidation && !pinForm.building
+                    ? 'pin-field-error'
+                    : ''
+                }
                 value={pinForm.building}
                 onChange={(e) =>
                   setPinForm({
@@ -1019,6 +1042,11 @@ const handleViewOnMap = (pin) => {
             <label>
               Room
               <select
+                className={
+                  pinValidation && !pinForm.roomId
+                    ? 'pin-field-error'
+                    : ''
+                }
                 value={pinForm.roomId}
                 disabled={!pinForm.building}
                 onChange={(e) =>
@@ -1044,43 +1072,71 @@ const handleViewOnMap = (pin) => {
             </label>
 
             <div className="event-date-time-fields">
-              <DatePicker
-                label="Start Date"
-                value={getDatePart(pinForm.startTime)}
-                onChange={(date) => updateDateTime('startTime', date, getTimePart(pinForm.startTime))}
-              />
-
-              <ClockPicker
-                label="Start Time"
-                value={getTimePart(pinForm.startTime)}
-                onChange={(time) =>
-                  updateDateTime(
-                    'startTime',
-                    getDatePart(pinForm.startTime),
-                    time
-                  )
+              <div
+                className={
+                  pinValidation && !getDatePart(pinForm.startTime)
+                    ? 'pin-date-error'
+                    : ''
                 }
-              />
+              >
+                <DatePicker
+                  label="Start Date"
+                  value={getDatePart(pinForm.startTime)}
+                  onChange={(date) =>
+                    updateDateTime('startTime', date, getTimePart(pinForm.startTime))
+                  }
+                />
+              </div>
+
+              <div
+                className={
+                  pinValidation && !getTimePart(pinForm.startTime)
+                    ? 'pin-clock-error'
+                    : ''
+                }
+              >
+                <ClockPicker
+                  label="Start Time"
+                  value={getTimePart(pinForm.startTime)}
+                  onChange={(time) =>
+                    updateDateTime('startTime', getDatePart(pinForm.startTime), time)
+                  }
+                />
+              </div>
             </div>
 
             <div className="event-date-time-fields">
-              <DatePicker
-                label="End Date"
-                value={getDatePart(pinForm.endTime)}
-                onChange={(date) => updateDateTime('endTime', date, getTimePart(pinForm.endTime))}
-              />
-
-              <ClockPicker
-                label="End Time"
-                value={getTimePart(pinForm.endTime)}
-                onChange={(time) =>
-                  updateDateTime(
-                    'endTime',
-                    getDatePart(pinForm.endTime),
-                    time
-                  )
+              <div
+                className={
+                  pinValidation && !getDatePart(pinForm.endTime)
+                    ? 'pin-date-error'
+                    : ''
                 }
-              />
+              >
+                <DatePicker
+                  label="End Date"
+                  value={getDatePart(pinForm.endTime)}
+                  onChange={(date) =>
+                    updateDateTime('endTime', date, getTimePart(pinForm.endTime))
+                  }
+                />
+              </div>
+
+              <div
+                className={
+                  pinValidation && !getTimePart(pinForm.endTime)
+                    ? 'pin-clock-error'
+                    : ''
+                }
+              >
+                <ClockPicker
+                  label="End Time"
+                  value={getTimePart(pinForm.endTime)}
+                  onChange={(time) =>
+                    updateDateTime('endTime', getDatePart(pinForm.endTime), time)
+                  }
+                />
+              </div>
             </div>
 
             <label className="recurring-checkbox">
@@ -1098,11 +1154,24 @@ const handleViewOnMap = (pin) => {
             </label>
 
             {pinForm.recurring && (
-              <DatePicker
-                label="Repeat Until"
-                value={pinForm.recurrenceEnd}
-                onChange={(date) => setPinForm({ ...pinForm, recurrenceEnd: date })}
-              />
+              <div
+                className={
+                  pinValidation && !pinForm.recurrenceEnd
+                    ? 'pin-date-error'
+                    : ''
+                }
+              >
+                <DatePicker
+                  label="Repeat Until"
+                  value={pinForm.recurrenceEnd}
+                  onChange={(date) =>
+                    setPinForm({
+                      ...pinForm,
+                      recurrenceEnd: date,
+                    })
+                  }
+                />
+              </div>
             )}
 
             {createMessage && createMessageType === 'error' && (
