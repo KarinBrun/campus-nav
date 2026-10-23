@@ -81,16 +81,6 @@
   }
 }
 
-/* Compact Appearance card */
-
-.account-side-panels > .account-panel:first-child {
-  padding-bottom: 12px;
-}
-
-.account-side-panels > .account-panel:first-child .account-field {
-  margin-bottom: 0;
-}
-
 /* Form Fields */
 
 .account-field {
@@ -189,5 +179,12 @@
   .account-grid,
   .account-side-panels {
     gap: 16px;
+  }
+}
+
+:root[data-theme='dark'] {
+  .account-grid > .account-panel h2 svg,
+  .account-side-panels > .account-panel:last-child h2 svg {
+    color: var(--accent-red);
   }
 }

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useTheme } from '../context/ThemeContext';
 import { API_URL } from '../config';
-import { UserRound, Palette, ShieldCheck } from 'lucide-react';
+import { UserRound, ShieldCheck } from 'lucide-react';
 import './Account.scss';
 
 function Account() {
@@ -18,7 +17,6 @@ function Account() {
   const [passwordSaving, setPasswordSaving] = useState(false);
   const [passwordError, setPasswordError] = useState('');
   const [passwordSuccess, setPasswordSuccess] = useState('');
-  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const loadAccount = async () => {
@@ -174,7 +172,7 @@ function Account() {
       <div className="account-content">
         <header className="account-page-heading">
           <h1>Account Settings</h1>
-          <p>Manage your profile, appearance, and security.</p>
+          <p>Manage your profile and security.</p>
         </header>
 
         <div className="account-grid">
@@ -247,25 +245,6 @@ function Account() {
           </section>
 
           <div className="account-side-panels">
-            <section className="account-panel">
-              <h2><Palette size={20} aria-hidden="true" />Appearance</h2>
-              <p className="account-panel-description">
-                Choose how Campus Nav looks on your device.
-              </p>
-
-              <div className="account-field">
-                <label htmlFor="accountTheme">Theme</label>
-                <select
-                  id="accountTheme"
-                  value={theme}
-                  onChange={(e) => setTheme(e.target.value)}
-                >
-                  <option value="light">Light Mode</option>
-                  <option value="dark">Dark Mode</option>
-                </select>
-              </div>
-            </section>
-
             <section className="account-panel">
               <h2><ShieldCheck size={20} aria-hidden="true" />Security</h2>
               <p className="account-panel-description">

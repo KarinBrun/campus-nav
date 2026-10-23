@@ -1,18 +1,34 @@
-
 import { createContext, useContext, useEffect, useState } from 'react';
 
 const ThemeContext = createContext(null);
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('campusNavTheme') === 'dark'
-      ? 'dark'
+    const savedTheme = localStorage.getItem('campusNavTheme');
+    return ['light', 'dark', 'auto'].includes(savedTheme)
+      ? savedTheme
       : 'light';
   });
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const applyTheme = () => {
+      const activeTheme = theme === 'auto'
+        ? (mediaQuery.matches ? 'dark' : 'light')
+        : theme;
+
+      document.documentElement.setAttribute('data-theme', activeTheme);
+    };
+
+    applyTheme();
     localStorage.setItem('campusNavTheme', theme);
+
+    mediaQuery.addEventListener('change', applyTheme);
+
+    return () => {
+      mediaQuery.removeEventListener('change', applyTheme);
+    };
   }, [theme]);
 
   return (

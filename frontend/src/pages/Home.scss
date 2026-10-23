@@ -310,8 +310,14 @@
 
 /* Dark mode */
 :root[data-theme='dark'] {
-  .today-schedule-row.highlighted { background: #3d252d; }
-  .upcoming-event-date { background: #303036; }
+  .today-schedule-row.highlighted {
+    background: var(--current-class-background);
+    border-left-color: var(--accent-red);
+  }
+
+  .upcoming-event-date {
+    background: #303036;
+  }
 }
 
 /* Desktop Home spacing */
@@ -421,4 +427,45 @@
   .upcoming-event-details > strong { font-size: 12px; }
   .upcoming-event-type,
   .upcoming-event-meta { font-size: 11px; }
+}
+
+:root[data-theme='dark'] .next-up-heading svg {
+  color: var(--accent-red);
+}
+
+:root[data-theme='dark'] .today-schedule-icon {
+  color: var(--accent-red);
+}
+
+:root[data-theme='dark'] .today-schedule-header h3 svg {
+  color: var(--accent-red);
+}
+
+:root[data-theme='dark'] .next-up-item-icon {
+  color: var(--accent-red);
+}
+
+:root[data-theme='dark'] .upcoming-events-header h3 svg {
+  color: var(--accent-red);
+}
+
+:root[data-theme='dark'] .today-schedule-footer {
+  color: var(--accent-red);
+}
+
+:root[data-theme='dark'] .upcoming-event-date .event-month {
+  color: var(--accent-red);
+}
+
+:root[data-theme='dark'] .upcoming-event-type {
+  color: var(--accent-red);
+}
+
+:root[data-theme='dark'] .today-schedule-directions:hover,
+:root[data-theme='dark'] .upcoming-event-directions:hover {
+  color: var(--accent-red);
+}
+
+:root[data-theme='dark'] .upcoming-events-footer {
+  color: var(--accent-red);
 }

@@ -126,6 +126,12 @@
       color: var(--gv-red);
     }
 
+    :root[data-theme='dark'] &:not(.active):hover {
+      background: var(--secondary-hover);
+      border-color: var(--border-color);
+      color: var(--text-primary);
+    }
+
     &.active {
       background: var(--gv-red);
       border-color: var(--gv-red);
@@ -328,6 +334,17 @@
   background-color: var(--hover-background);
 }
 
+:root[data-theme='dark'] .pagination button:not(:disabled) {
+  color: var(--accent-red);
+  border-color: var(--accent-red);
+
+  &:hover {
+    background-color: var(--gv-red);
+    color: #fff;
+    border-color: var(--gv-red);
+  }
+}
+
 .pagination button:disabled {
   color: var(--text-secondary);
   border-color: var(--border-color);
@@ -393,6 +410,17 @@
     &:hover {
       background: var(--gv-red);
       color: white;
+    }
+
+    :root[data-theme='dark'] & {
+      color: var(--accent-red);
+      border-color: var(--accent-red);
+
+      &:hover {
+        background: var(--gv-red);
+        border-color: var(--gv-red);
+        color: white;
+      }
     }
   }
 }
@@ -719,14 +747,53 @@
 .pin-detail svg { flex: 0 0 auto; color: var(--text-secondary); }
 .pin-actions { flex-wrap: wrap; margin-top: 18px; gap: 9px; }
 .pin-actions .view-map-button, .pin-actions .pin-directions-button, .pin-actions .edit-pin-button, .pin-actions .delete-pin-button { display: inline-flex; justify-content: center; align-items: center; gap: 7px; min-width: 0; white-space: normal; padding: 10px 14px; font: inherit; font-size: 14px; font-weight: 600; border-radius: 7px; transition: background .2s ease, color .2s ease, border-color .2s ease; }
-.pin-actions .view-map-button { background: var(--surface); color: var(--gv-red); border: 1px solid var(--gv-red); }
+.pin-actions .view-map-button {
+  background: var(--surface);
+  color: var(--gv-red);
+  border: 1px solid var(--gv-red);
+
+  :root[data-theme='dark'] & {
+    color: var(--accent-red);
+    border-color: var(--accent-red);
+
+    &:hover {
+      background: var(--gv-red);
+      color: #fff;
+      border-color: var(--gv-red);
+    }
+  }
+}
 .pin-actions .view-map-button:hover { background: var(--gv-red); color: #fff; border-color: var(--gv-red); }
 .pin-actions .pin-directions-button { background: var(--gv-red); border: 1px solid var(--gv-red); color: #fff; }
 .pin-actions .pin-directions-button:hover { background: color-mix(in srgb, var(--gv-red) 85%, black); color: #fff; }
 .pin-actions .edit-pin-button { background: var(--surface); color: var(--text-primary); border: 1px solid var(--border-color); }
-.pin-actions .edit-pin-button:hover { background: #343a40; color: #fff; border-color: #343a40; }
-.pin-actions .delete-pin-button { background: var(--surface); color: var(--gv-red); border: 1px solid var(--gv-red); }
-.pin-actions .delete-pin-button:hover { background: var(--gv-red); color: #fff; border-color: var(--gv-red); }
+.pin-actions .edit-pin-button:hover {
+  background: #343a40;
+  color: #fff;
+  border-color: #343a40;
+}
+
+:root[data-theme='dark'] .pin-actions .edit-pin-button:hover {
+  background: var(--secondary-hover);
+  color: #fff;
+  border-color: var(--secondary-hover);
+}
+.pin-actions .delete-pin-button {
+  background: var(--surface);
+  color: var(--gv-red);
+  border: 1px solid var(--gv-red);
+
+  :root[data-theme='dark'] & {
+    color: var(--accent-red);
+    border-color: var(--accent-red);
+
+    &:hover {
+      background: var(--gv-red);
+      color: #fff;
+      border-color: var(--gv-red);
+    }
+  }
+}
 .pin-modal { background: var(--surface); }
 .pin-modal-header h3 { display: flex; align-items: center; gap: 11px; }
 .pin-modal-header h3 svg { color: var(--gv-red); flex-shrink: 0; }
@@ -822,4 +889,34 @@
       border-radius: 6px;
     }
   }
+}
+
+:root[data-theme='dark'] .pin-card--event .pin-card-icon {
+  color: var(--accent-red);
+}
+
+:root[data-theme='dark'] .pin-modal .cancel-pin-button {
+  color: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+:root[data-theme='dark'] .pin-modal .cancel-pin-button:hover {
+  background: var(--gv-red);
+  border-color: var(--gv-red);
+  color: white;
+}
+
+:root[data-theme='dark'] .user-search-result button {
+  color: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+:root[data-theme='dark'] .user-search-result button:hover {
+  background-color: var(--gv-red);
+  border-color: var(--gv-red);
+  color: white;
+}
+
+:root[data-theme='dark'] .pin-modal-header svg {
+  color: var(--accent-red);
 }

@@ -14,8 +14,16 @@ router.post("/register", async (req, res) => {
             firstName,
             lastName,
             email,
-            password
+            password,
+            website
         } = req.body;
+
+        // Honeypot check - reject registrations that fill the hidden field
+        if (website !== undefined && website !== "") {
+            return res.status(400).json({
+                message: "Registration failed."
+            });
+        }
 
         // Check if all fields were provided
         if (!firstName || !lastName || !email || !password) {

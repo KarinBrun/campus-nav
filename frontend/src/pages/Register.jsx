@@ -11,6 +11,7 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [website, setWebsite] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -43,6 +44,7 @@ function Register() {
             lastName: lastName.trim(),
             email: email.trim().toLowerCase(),
             password,
+            website,
           }),
         }
       );
@@ -81,6 +83,28 @@ function Register() {
         <p>Register to use Campus Nav.</p>
 
         <form onSubmit={handleSubmit}>
+          {/* Honeypot field for bot detection */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              left: '-9999px',
+              width: '1px',
+              height: '1px',
+              overflow: 'hidden',
+            }}
+          >
+            <input
+              type="text"
+              name="website"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+          </div>
+
           <div className="register-name-row">
             <div className="form-group">
               <label htmlFor="firstName">First Name</label>

@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
@@ -27,6 +26,11 @@
   --text-secondary: #B8BEC8;
   --border-color: #444851;
   --hover-background: #343841;
+
+  // Dark mode accent colors
+  --accent-red: #FF7580;
+  --secondary-hover: #505661;
+  --current-class-background: #343841;
 
   color-scheme: dark;
 }

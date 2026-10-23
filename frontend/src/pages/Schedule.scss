@@ -77,6 +77,12 @@
   &:hover { border-color: var(--gv-red); color: var(--gv-red); }
   &.active { background: var(--gv-red); border-color: var(--gv-red); color: white; }
   &.active:hover { color: white; }
+
+  :root[data-theme='dark'] &:not(.active):hover {
+    background: var(--secondary-hover);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+  }
 }
 
 .day-short { display: none; }
@@ -151,10 +157,23 @@
   background: var(--surface);
 }
 .class-card + .class-card { border-top: 1px solid var(--border-color); }
+
 .class-card.schedule-highlighted {
   border-left-color: var(--gv-red);
   background: rgba(186, 12, 47, 0.065);
 }
+
+:root[data-theme='dark'] {
+  .class-card.schedule-highlighted {
+    border-left-color: var(--accent-red);
+    background: var(--current-class-background);
+  }
+
+  .schedule-current-label {
+    color: var(--accent-red);
+  }
+}
+
 .schedule-row-time {
   flex: 0 0 96px;
   display: flex;
@@ -588,4 +607,65 @@
       border-radius: 6px;
     }
   }
+}
+
+:root[data-theme='dark'] {
+  .weekly-schedule-title svg,
+  .schedule-item-icon,
+  .personal-schedule-card .schedule-item-icon {
+    color: var(--accent-red);
+  }
+}
+
+:root[data-theme='dark'] .schedule-item-icon {
+  background: var(--hover-background);
+}
+
+:root[data-theme='dark'] {
+  .next-class-info .next-class-label,
+  .schedule-day-heading {
+    color: var(--accent-red);
+  }
+}
+
+:root[data-theme='dark'] .schedule-class-actions .remove-class-button {
+  color: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+:root[data-theme='dark'] .schedule-class-actions .remove-class-button:hover {
+  background: var(--gv-red);
+  border-color: var(--gv-red);
+  color: white;
+}
+
+:root[data-theme='dark'] .schedule-class-actions .schedule-edit-button:hover {
+  background: var(--secondary-hover);
+  color: white;
+}
+
+:root[data-theme='dark'] .schedule-page .add-class-list-modal .available-class button:not(.class-added-button) {
+  color: var(--accent-red);
+  border-color: var(--accent-red);
+
+  &:hover {
+    background: var(--gv-red);
+    border-color: var(--gv-red);
+    color: white;
+  }
+}
+
+.schedule-page .add-class-modal .modal-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.schedule-page .add-class-modal .modal-header h3 svg {
+  color: var(--gv-red);
+  flex-shrink: 0;
+}
+
+:root[data-theme='dark'] .schedule-page .add-class-modal .modal-header h3 svg {
+  color: var(--accent-red);
 }

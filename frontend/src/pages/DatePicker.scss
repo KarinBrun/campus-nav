@@ -124,3 +124,15 @@
   border-top: 1px solid var(--border-color);
 }
 .custom-date-calendar-footer button { color: var(--gv-red); font-size: 13px; }
+
+:root[data-theme='dark'] .custom-date-calendar-footer button {
+  color: var(--accent-red);
+}
+
+:root[data-theme='dark'] .custom-date-calendar-footer button:hover {
+  color: white;
+}
+
+:root[data-theme='dark'] .custom-date-day.is-today {
+  border-color: var(--accent-red);
+}

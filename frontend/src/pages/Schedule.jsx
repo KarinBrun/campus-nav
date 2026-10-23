@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ClockPicker from './ClockPicker';
 import { API_URL } from '../config';
-import { CalendarDays, BookOpen, CalendarCheck, Clock3, MapPin, Search, Navigation, Trash2, Pencil } from 'lucide-react';
+import { CalendarDays, CalendarPlus, BookOpen, CalendarCheck, Clock3, MapPin, Search, Navigation, Trash2, Pencil } from 'lucide-react';
 import './Schedule.scss';
 
 function Schedule() {
@@ -908,6 +908,7 @@ const validateScheduleItem = () => {
             <div className="add-class-modal">
               <div className="modal-header">
                 <h3>
+                  <CalendarPlus size={24} aria-hidden="true" />
                   {editingScheduleItem
                     ? 'Edit Schedule Item'
                     : 'Add Schedule Item'}
@@ -1142,7 +1143,10 @@ const validateScheduleItem = () => {
           <div className="modal-overlay">
             <div className="add-class-modal add-class-list-modal">
               <div className="modal-header">
-                <h3>Add a Class</h3>
+                <h3>
+                  <BookOpen size={24} aria-hidden="true" />
+                  Add a Class
+                </h3>
 
                 <button
                   type="button"

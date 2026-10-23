@@ -170,3 +170,7 @@
   left: auto;
   right: 0;
 }
+
+:root[data-theme='dark'] .clock-actions button:first-child {
+  color: var(--accent-red);
+}

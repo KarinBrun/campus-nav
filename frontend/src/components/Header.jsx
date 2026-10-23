@@ -8,14 +8,19 @@ import {
   CalendarDays,
   ChevronDown,
   Settings,
-  LogOut
+  LogOut,
+  Sun,
+  Moon,
+  Monitor
 } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 import grandViewLogo from '../assets/grand-view-logo-red.png';
 import NextUp from './NextUp';
 
 function Header() {
   const navigate = useNavigate();
   const [accountOpen, setAccountOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   const storedUser = JSON.parse(
     localStorage.getItem('user') || '{}'
@@ -128,6 +133,40 @@ function Header() {
                 <LogOut size={17} strokeWidth={1.8} />
                 <span>Logout</span>
               </button>
+
+              <div className="dropdown-divider" />
+
+              <div className="dropdown-theme-toggle" role="group" aria-label="Theme">
+                <button
+                  type="button"
+                  className={theme === 'light' ? 'active' : ''}
+                  onClick={() => setTheme('light')}
+                  aria-pressed={theme === 'light'}
+                >
+                  <Sun size={17} />
+                  Light
+                </button>
+
+                <button
+                  type="button"
+                  className={theme === 'dark' ? 'active' : ''}
+                  onClick={() => setTheme('dark')}
+                  aria-pressed={theme === 'dark'}
+                >
+                  <Moon size={17} />
+                  Dark
+                </button>
+
+                <button
+                  type="button"
+                  className={theme === 'auto' ? 'active' : ''}
+                  onClick={() => setTheme('auto')}
+                  aria-pressed={theme === 'auto'}
+                >
+                  <Monitor size={17} />
+                  Auto
+                </button>
+              </div>
             </div>
           )}
         </div>
@@ -161,11 +200,50 @@ function Header() {
                 to="/account"
                 onClick={() => setAccountOpen(false)}
               >
-                Account Settings
+                <Settings size={17} strokeWidth={1.8} />
+                <span>Account Settings</span>
               </Link>
+
+              <div className="dropdown-divider" />
+
               <button type="button" onClick={handleLogout}>
-                Logout
+                <LogOut size={17} strokeWidth={1.8} />
+                <span>Logout</span>
               </button>
+
+              <div className="dropdown-divider" />
+
+              <div className="dropdown-theme-toggle" role="group" aria-label="Theme">
+                <button
+                  type="button"
+                  className={theme === 'light' ? 'active' : ''}
+                  onClick={() => setTheme('light')}
+                  aria-pressed={theme === 'light'}
+                >
+                  <Sun size={17} />
+                  Light
+                </button>
+
+                <button
+                  type="button"
+                  className={theme === 'dark' ? 'active' : ''}
+                  onClick={() => setTheme('dark')}
+                  aria-pressed={theme === 'dark'}
+                >
+                  <Moon size={17} />
+                  Dark
+                </button>
+
+                <button
+                  type="button"
+                  className={theme === 'auto' ? 'active' : ''}
+                  onClick={() => setTheme('auto')}
+                  aria-pressed={theme === 'auto'}
+                >
+                  <Monitor size={17} />
+                  Auto
+                </button>
+              </div>
             </div>
           )}
         </div>

@@ -191,3 +191,23 @@
     width: 100%;
   }
 }
+
+/* Dark mode Search Results icon */
+:root[data-theme='dark'] .search-results h3 svg {
+  color: var(--accent-red);
+}
+
+/* Dark mode outlined buttons */
+:root[data-theme='dark'] .room-actions .view-map-button,
+:root[data-theme='dark'] .room-actions .directions-button {
+  color: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+/* Keep solid university red on hover */
+:root[data-theme='dark'] .room-actions .view-map-button:hover,
+:root[data-theme='dark'] .room-actions .directions-button:hover {
+  background: var(--gv-red);
+  color: white;
+  border-color: var(--gv-red);
+}

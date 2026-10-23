@@ -241,3 +241,25 @@
     padding-bottom: 12px;
   }
 }
+
+/* Dark mode starting location icon */
+:root[data-theme='dark'] .starting-location-heading svg {
+  color: var(--accent-red);
+}
+
+/* Dark mode starting location subtitle */
+:root[data-theme='dark'] .starting-location p {
+  color: var(--text-secondary);
+}
+
+/* Dark mode Change Starting Location button */
+:root[data-theme='dark'] .change-start-button {
+  color: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+:root[data-theme='dark'] .change-start-button:hover {
+  background: var(--gv-red);
+  border-color: var(--gv-red);
+  color: white;
+}
