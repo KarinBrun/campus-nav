@@ -58,7 +58,7 @@ Users can create an account to explore the campus map, find classrooms, manage s
 | Database | MongoDB Atlas, Mongoose |
 | Authentication | JWT, bcrypt |
 | Mapping | MappedIn |
-| API Testing | Postman |
+| API & Load Testing | Postman, k6 |
 | Version Control | Git, GitHub |
 | Deployment & Hosting | Vercel, Render |
 
@@ -80,6 +80,22 @@ The following screenshots showcase the Campus Nav interface and its main feature
 
 ### Events and Study Groups
 ![Campus Nav Events](campus-nav/events.png)
+
+## Load Testing
+
+Campus Nav was load tested using [k6](https://grafana.com/docs/k6/latest/) to evaluate backend performance under concurrent user activity.
+
+Testing included concurrent account registration and authenticated API requests for user accounts, schedules, events, classes, and rooms.
+
+**Results:**
+- 50 concurrent registrations completed successfully.
+- Multiple 50-user activity tests completed without HTTP failures.
+- A 100-user activity test completed 600 API requests with zero HTTP failures.
+- The 100-user test had an average HTTP response time of 2.05 seconds and a 95th-percentile response time of 3.47 seconds.
+
+All load tests were performed against a local backend connected to an isolated MongoDB test database. Production infrastructure was not load tested.
+
+The testing scripts are available in the `load-tests` directory.
 
 ## Challenges and Limitations
 
@@ -189,7 +205,7 @@ My work included:
 - Creating and managing the MongoDB database
 - Integrating Mappedin for interactive campus navigation
 - Implementing authentication, schedules, and event management
-- Testing and debugging application functionality
+- Performing functional, API, and load testing to evaluate application reliability and performance
 - Configuring deployment with Vercel and Render
 - Designing the responsive interface with light and dark modes
 
