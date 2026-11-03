@@ -13,10 +13,11 @@ const router = express.Router();
 router.get("/", authMiddleware, async (req, res) => {
     try {
         const classes = await Class.find()
-        .populate("room")
-        .sort({
-            courseCode: 1
-        });
+            .populate("room")
+            .sort({
+                courseCode: 1
+            })
+            .lean();
 
         res.status(200).json(classes);
     } catch (error) {
